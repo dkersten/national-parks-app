@@ -1,0 +1,13 @@
+// import font
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@;400;500&display=swap");
+
+// import scss variables & reset
+@import "./sass/variables";
+@import "./sass/reset";
+
+// import components styling
+@import "./sass/header";
+@import "./sass/hero";
+@import "./sass/cardsContainer";
+@import "./sass/card";
+@import "./sass/footer";
