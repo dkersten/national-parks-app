@@ -272,13 +272,6 @@ article.card .inner-card-container {
   display: flex;
 }
 
-article.card .inner-card-container .left {
-  background: url("https://www.nps.gov/common/uploads/structured_data/3C80132D-1DD8-B71B-0BAE3D20C07909AD.jpg");
-  background-size: cover;
-  background-position: center;
-  position: relative;
-}
-
 article.card .inner-card-container .left h2 {
   font-size: 1.15rem;
   font-weight: 700;
