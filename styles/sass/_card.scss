@@ -1,3 +1,120 @@
 article.card {
-  background: green;
+  .inner-card-container {
+    height: calc(100% - 2rem);
+    margin: 0 0.5rem 2rem;
+    box-shadow: rgba(0, 0, 0, 0.15) 0px 5px 15px 0px;
+    display: flex;
+
+    .left {
+      background: url("https://www.nps.gov/common/uploads/structured_data/3C80132D-1DD8-B71B-0BAE3D20C07909AD.jpg");
+      background-size: cover;
+      background-position: center;
+      position: relative;
+
+      h2 {
+        font-size: 1.15rem;
+        font-weight: 700;
+        line-height: 1.2;
+        color: $color-white-primary;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.8);
+      }
+    }
+
+    .right {
+      .text-container {
+        padding: 1.5rem;
+      }
+
+      .park-description {
+        font-size: 14px;
+        line-height: 1.3;
+        color: $color-text-primary;
+        margin-bottom: 1.5rem;
+      }
+
+      li {
+        color: $color-text-primary;
+        font-size: 14px;
+        margin-bottom: 1rem;
+
+        &:last-of-type {
+          margin-bottom: 0;
+        }
+
+        a {
+          text-decoration: none;
+          font-size: 1rem;
+          color: $color-text-primary;
+        }
+
+        .sub-menu {
+          margin-left: 1.5rem;
+          margin-top: 0.25rem;
+          margin-bottom: 2rem;
+
+          li {
+            margin-bottom: 0.25rem;
+            list-style: circle;
+          }
+        }
+      }
+    }
+  }
+}
+
+// card responsiveness
+@media screen and (min-width: 1151px) {
+  article.card {
+    .inner-card-container {
+      .left {
+        flex-basis: 40%;
+
+        h2 {
+          position: absolute;
+          left: 1rem;
+          bottom: 0.5rem;
+          padding-right: 1rem;
+        }
+      }
+
+      .right {
+        flex-basis: 60%;
+      }
+    }
+  }
+}
+
+@media screen and (max-width: 1150px) {
+  article.card {
+    .inner-card-container {
+      flex-direction: column;
+
+      .left {
+        min-height: 250px;
+        flex-basis: 100%;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        h2 {
+          text-align: center;
+          padding: 2rem 1rem;
+        }
+      }
+
+      .right {
+        flex-basis: 100%;
+        padding-top: 2rem;
+        padding-bottom: 1rem;
+
+        .park-description {
+          font-size: 1rem;
+        }
+
+        li {
+          font-size: 1rem;
+        }
+      }
+    }
+  }
 }
