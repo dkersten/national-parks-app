@@ -1,3 +1,36 @@
 .hero {
-  background: orange;
+  background: url("../../images/hero-bg.jpg");
+  background-size: cover;
+  background-position: center;
+  min-height: 500px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-top: calc(-80px - 2rem);
+  position: relative;
+  z-index: 1;
+
+  // responsive height resize
+  @media screen and (max-width: 450px) {
+    min-height: 400px;
+  }
+
+  h1 {
+    color: $color-white-primary;
+    font-size: 3.5rem;
+    font-weight: 700;
+    text-shadow: 1px 1px 5px rgba(0, 0, 0, 0.95);
+    padding: 3rem 1rem;
+    text-align: center;
+    line-height: 1.2;
+
+    // responsive text resizing
+    @media screen and (max-width: 785px) {
+      font-size: 2.75rem;
+    }
+
+    @media screen and (max-width: 450px) {
+      font-size: 2.25rem;
+    }
+  }
 }
