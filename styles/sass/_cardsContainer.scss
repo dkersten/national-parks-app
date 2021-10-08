@@ -1,3 +1,17 @@
 .card-container {
-  background: yellow;
+  margin: 5rem auto;
+
+  .loading-notice {
+    font-size: 1.25rem;
+    color: $color-text-primary;
+    line-height: 1.4;
+
+    .show {
+      display: block;
+    }
+
+    .hide {
+      display: none;
+    }
+  }
 }

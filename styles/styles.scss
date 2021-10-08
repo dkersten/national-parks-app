@@ -1,9 +1,10 @@
 // import font
 @import url("https://fonts.googleapis.com/css2?family=Noto+Sans+SC:wght@;400;500&display=swap");
 
-// import scss variables & reset
+// import scss variables, reset, & general styles
 @import "./sass/variables";
 @import "./sass/reset";
+@import "./sass/general";
 
 // import components styling
 @import "./sass/header";
