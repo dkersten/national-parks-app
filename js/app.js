@@ -1,16 +1,21 @@
-// import .env to hide sensitive variables (API key)
-// require('dotenv').config();
-
 // show loading text while waiting for data to download
 const loadingEl = document.querySelector('.loading-notice')
 loadingEl.classList.add('show')
 
 
-// fetch data from API
-fetch('https://developer.nps.gov/api/v1/parks?stateCode=ca&limit=12&api_key=')
-  .then(response => response.json())
-  .then(json => addParkData((json.data)))
-
+// fetch data from API, only add data if status ok, catch errors
+fetch('https://developer.nps.gov/api/v1/parks?stateCode=ca&limit=12&api_key=sotjXf7oezTKrhOJD6MFVL6IB0q67YFPYgFip3Co')
+    .then((response) => {
+        if (response.ok) {
+            return response.json();
+        } else {
+            throw new Error('Something went wrong');
+        }
+    })
+    .then(json => addParkData(json.data))
+    .catch((error) => {
+        console.log(error)
+    });
 
 //  function to add park data to DOM
 const addParkData = (parkData) => {
