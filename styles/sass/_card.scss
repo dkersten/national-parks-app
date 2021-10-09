@@ -63,6 +63,7 @@ article.card {
     .inner-card-container {
       .left {
         flex-basis: 40%;
+        position: relative;
 
         h2 {
           position: absolute;

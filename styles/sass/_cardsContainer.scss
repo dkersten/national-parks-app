@@ -16,9 +16,9 @@
   }
 
   .card-flex-container {
-    display: flex;
     align-items: stretch;
     flex-wrap: wrap;
+    display: flex;
 
     // responsive card layout
     .card {

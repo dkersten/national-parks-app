@@ -1,6 +1,10 @@
 // import .env to hide sensitive variables (API key)
 // require('dotenv').config();
 
+// show loading text while waiting for data to download
+const loadingEl = document.querySelector('.loading-notice')
+loadingEl.classList.add('show')
+
 
 // fetch data from API
 fetch('https://developer.nps.gov/api/v1/parks?stateCode=ca&limit=12&api_key=')
@@ -8,11 +12,15 @@ fetch('https://developer.nps.gov/api/v1/parks?stateCode=ca&limit=12&api_key=')
   .then(json => addParkData((json.data)))
 
 
-//   add park data to DOM
+//  function to add park data to DOM
 const addParkData = (parkData) => {
 
     // Select card flex container to add cards as children
     const cardContainer = document.querySelector('.card-flex-container')
+
+    // remove loading text after data loads
+    loadingEl.classList.remove('show')
+    loadingEl.classList.add('hide')
 
     // loop through each park in array and build up card element
         for (let i = 0; i < parkData.length; i++) {
@@ -38,8 +46,7 @@ const addParkData = (parkData) => {
             // get activities
             const parkActivities = parkData[i]['activities']
 
-            cardEl
-
+            // build up card structure and add dymanic data from api
             cardEl.innerHTML = `
                     <div class="inner-card-container">
                         <div class="left" style="background: url(${parkImg}); background-position: center; background-size: cover">
@@ -50,17 +57,7 @@ const addParkData = (parkData) => {
                                 <p class="park-description">${parkDescription}</p>
                                 <ul class="park-info">
                                     <li>Location: ${parkLatitude} N ${parkLongitude} W</li>
-
-                                    <li><span class="activities-label">Activities:</span>
-                                        <ul class="sub-menu">
-                                            ${parkActivities[0]['name'] ? `<li>${parkActivities[0]['name']}</li>` : ''}
-
-                                            ${parkActivities[1]['name'] ? `<li>${parkActivities[1]['name']}</li>` : ''}
-
-                                            
-                                        </ul>
-                                    </li>
-
+                                    <li class="activity-item"><span class="activities-label">Activities:</span></li>
                                     <li><a target="_blank" aria-label="Learn more about ${parkName} (Opens in a new tab)" href="${parkURL}">Learn More</a></li>
                                 </ul>
                             </div>
@@ -68,19 +65,25 @@ const addParkData = (parkData) => {
                     </div>
             `
 
+            // append card to card container
             cardContainer.appendChild(cardEl)
-        }
+
+            // select the activity list item and then add the activities list as the last child from ul created in formatActivities function below
+            const activityEl = cardEl.querySelector('.activity-item')
+            activityEl.insertAdjacentElement("beforeend", formatActivities(parkActivities))
+
+        } // end for loop
 }
 
-// function to format activities (first 3 activities or less)
+// function to format activities (first 3 activities or less) --> creates a ul that will be appended to the card above
 const formatActivities = (activities) => {
-    // console.log(activities)
     const activityList = document.createElement('ul')
     activityList.classList.add('sub-menu')
 
-    // const activityArray = []
+    // make sure activities is not undefined
     if (activities) {
 
+        // check to see if there are less than 3 activities. If so just add those to a list
         if (activities.length < 3) {
             for (let i = 0; i < activities.length; i++) {
                 const listItem = document.createElement('li')
@@ -88,6 +91,7 @@ const formatActivities = (activities) => {
                 activityList.appendChild(listItem)
             }
             
+        // if there are 3 or more activites just grab the first 3 
         } else {
             for (let i = 0; i < 3; i++) {
                 const listItem = document.createElement('li')
@@ -95,10 +99,12 @@ const formatActivities = (activities) => {
                 activityList.appendChild(listItem)
             }
         }
+
         return activityList
     }
 
 }
+
 
 // dynamic copyright in footer
 const copyrightEl = document.querySelector('#copyright-year')
